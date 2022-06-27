@@ -29,7 +29,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
-  app.get("/filteredimage", async (req, res) => {
+  app.get("/filteredimage", async (req:express.Request, res:express.Response) => {
 
     const imageUrl = req.query.image_url;
     if (imageUrl) {
@@ -39,6 +39,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
           deleteLocalFiles([response])
         })
       })
+      res.status(200).send("Image filtered successful");
     } else {
       res.status(404).send("The Image url is not valid");
     }
